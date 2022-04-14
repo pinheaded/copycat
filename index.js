@@ -6,8 +6,8 @@ const autoChatInput = (text) => getModule(["ComponentDispatch"], false).Componen
 
 const settings = require("./Settings");
 
-module.exports = class HastePaste extends Plugin {
-    entityID = "haste-paste"
+module.exports = class Copycat extends Plugin {
+    entityID = "copycat"
 
     keyup(event) {
         if (
@@ -32,7 +32,7 @@ module.exports = class HastePaste extends Plugin {
             this.entityID,
             {
                 category: this.entityID,
-                label: "Haste Paste",
+                label: "Copycat",
                 render: settings
             }
         );
@@ -40,6 +40,15 @@ module.exports = class HastePaste extends Plugin {
         this.keyup_func = this.keyup.bind(this);
 
         document.body.addEventListener("keyup", this.keyup_func);
+        powercord.api.notices.sendToast("copycatNotif", {
+            header: "Haste Paste Notice",
+            content: "We've changed our plugin name. In short, this nullifies all plugin settings. Just go to User Settings > Copycat to set them back",
+    		type: "success",
+            timeout: 5000,
+        });
+        setTimeout(() => {
+            powercord.api.notices.closeToast("copycatNotif");
+        }, 10000);
     }
 
     pluginWillUnload() {

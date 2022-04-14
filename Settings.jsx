@@ -3,7 +3,7 @@ const { TextAreaInput, SwitchItem } = require("powercord/components/settings");
 
 const Button = getModule(m => m.ButtonLink, false).default
 
-module.exports = class HastePasteSettings extends React.PureComponent {
+module.exports = class CopycatSettings extends React.PureComponent {
     render() {
         const key_map = {
             f2:  "F2",
@@ -20,12 +20,12 @@ module.exports = class HastePasteSettings extends React.PureComponent {
         }
 
         return(
-            <div className="hastePasteSettings">
+            <div className="copycatSettings">
                 <div className="description-30xx7u formText-2ngGjI marginBottom20-315RVT modeDefault-2fEh7a">
                     Set text to copy using keys F2 - F12, it's kinda like copy pasting except you can paste over 10 things without needing to open your clipboard!
                 </div>
-                <div className="hastePasteSettingsGrid">
-                    <div className="hastePasteSettingsGridFirstItem">
+                <div className="copycatSettingsGrid">
+                    <div className="copycatSettingsGridFirstItem">
                         <h6 className="colorStandard-21JIj7 size14-3fJ-ot h5-2RwDNl title-3hptVQ defaultMarginh5-3Jxf6f"
                             style = {{"margin-bottom": "10px"}}>
                             Where the fuck is F1?!
@@ -39,22 +39,22 @@ module.exports = class HastePasteSettings extends React.PureComponent {
                     </div>
                     {Object.keys(key_map).map((key) => {
                         return(
-                            <div className="hastePasteSettingsGridItem">
+                            <div className="copycatSettingsGridItem">
                                 <TextAreaInput
-                                    className="hastePasteSettingsGridItemInput"
+                                    className="copycatSettingsGridItemInput"
                                     onChange={(arg) => this.props.updateSetting(`${key_map[key]}`, arg)}
                                     placeholder="Enter something..."
                                     value={this.props.getSetting(`${key_map[key]}`)}>
                                     {key_map[key]} Key
                                 </TextAreaInput>
                                 <SwitchItem
-                                    className="hastePasteSettingsGridItemSwitch"
+                                    className="copycatSettingsGridItemSwitch"
                                     onChange={(arg) => this.props.updateSetting(`${key_map[key]}Enabled`, arg)}
                                     value={this.props.getSetting(`${key_map[key]}Enabled`, true)}>
                                     Enable Paste Key
                                 </SwitchItem>
                                 <Button
-                                    className="hastePasteSettingsGridItemButton"
+                                    className="copycatSettingsGridItemButton"
                                     size={Button.Sizes.MIN}
                                     color={Button.Colors.RED}
                                     onClick={() => {
@@ -67,14 +67,14 @@ module.exports = class HastePasteSettings extends React.PureComponent {
                     })}
                     <style>
                     {`
-                        .hastePasteSettingsGrid {
+                        .copycatSettingsGrid {
                             display: grid;
                             grid-template-columns: calc(33% - 5px) calc(33% - 5px) calc(33% - 5px);
                             grid-gap: 10px;
                         }
 
-                        .hastePasteSettingsGridItem,
-                        .hastePasteSettingsGridFirstItem {
+                        .copycatSettingsGridItem,
+                        .copycatSettingsGridFirstItem {
                             background: var(--background-secondary);
                             backdrop-filter: blur(10px);
                             border-radius: 10px;
@@ -83,11 +83,11 @@ module.exports = class HastePasteSettings extends React.PureComponent {
                             height: 100%;
                         }
 
-                        .hastePasteSettingsGridItemButton {
+                        .copycatSettingsGridItemButton {
                             width: 100%;
                         }
 
-                        .hastePasteSettingsGridItem div[class*="divider-"] {
+                        .copycatSettingsGridItem div[class*="divider-"] {
                             border-color: transparent;
                             margin: 0;
                         }

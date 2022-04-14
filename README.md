@@ -1,4 +1,4 @@
-## Haste Paste
+## Copycat
 
 - Pasting from clipboard - Slower than grandma
 - Using this ploogin - ***nyoooom***
