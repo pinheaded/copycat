@@ -1,7 +1,7 @@
 const Plugin = require("powercord/entities/Plugin");
 const { getModule } = require("powercord/webpack");
 const autoChatInput = (text) => getModule(["ComponentDispatch"], false).ComponentDispatch.dispatchToLastSubscribed("INSERT_TEXT", {
-    content: text
+    plainText: text
 })
 
 const settings = require("./Settings");
@@ -23,7 +23,7 @@ module.exports = class HastePaste extends Plugin {
             || event.key == "F3"
             || event.key == "F2"
         ) {
-            autoChatInput(this.settings.get(event.key, ""));
+            if (this.settings.get(`${event.key}Enabled`, true) === true) autoChatInput(this.settings.get(event.key, ""));
         }
     }
 
@@ -37,11 +37,13 @@ module.exports = class HastePaste extends Plugin {
             }
         );
 
-        document.body.addEventListener("keyup", this.keyup.bind(this));
+        this.keyup_func = this.keyup.bind(this);
+
+        document.body.addEventListener("keyup", this.keyup_func);
     }
 
     pluginWillUnload() {
         powercord.api.settings.unregisterSettings(this.entityID);
-        document.body.removeEventListener("keyup", this.keyup);
+        document.body.removeEventListener("keyup", this.keyup_func);
     }
 }

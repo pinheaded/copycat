@@ -1,5 +1,5 @@
 const { React, getModule } = require("powercord/webpack");
-const { TextAreaInput } = require("powercord/components/settings");
+const { TextAreaInput, SwitchItem } = require("powercord/components/settings");
 
 const Button = getModule(m => m.ButtonLink, false).default
 
@@ -21,16 +21,16 @@ module.exports = class HastePasteSettings extends React.PureComponent {
 
         return(
             <div className="hastePasteSettings">
-                <div className="description-3_Ncsb formText-3fs7AJ marginBottom20-32qID7 modeDefault-3a2Ph1 primary-jw0I4K">
+                <div className="description-30xx7u formText-2ngGjI marginBottom20-315RVT modeDefault-2fEh7a">
                     Set text to copy using keys F2 - F12, it's kinda like copy pasting except you can paste over 10 things without needing to open your clipboard!
                 </div>
                 <div className="hastePasteSettingsGrid">
                     <div className="hastePasteSettingsGridFirstItem">
-                        <h6 className="colorStandard-2KCXvj size14-e6ZScH h5-18_1nd title-3sZWYQ defaultMarginh5-2mL-bP"
+                        <h6 className="colorStandard-21JIj7 size14-3fJ-ot h5-2RwDNl title-3hptVQ defaultMarginh5-3Jxf6f"
                             style = {{"margin-bottom": "10px"}}>
                             Where the fuck is F1?!
                         </h6>
-                        <h5 className="description-3_Ncsb formText-3fs7AJ marginBottom20-32qID7 modeDefault-3a2Ph1 primary-jw0I4K">
+                        <h5 className="description-30xx7u formText-2ngGjI marginBottom20-315RVT modeDefault-2fEh7a">
                             Pressing F1 opens Discord Support, and I'm too lazy to change that L
                             <br/>
                             <br/>
@@ -47,6 +47,12 @@ module.exports = class HastePasteSettings extends React.PureComponent {
                                     value={this.props.getSetting(`${key_map[key]}`)}>
                                     {key_map[key]} Key
                                 </TextAreaInput>
+                                <SwitchItem
+                                    className="hastePasteSettingsGridItemSwitch"
+                                    onChange={(arg) => this.props.updateSetting(`${key_map[key]}Enabled`, arg)}
+                                    value={this.props.getSetting(`${key_map[key]}Enabled`, true)}>
+                                    Enable Paste Key
+                                </SwitchItem>
                                 <Button
                                     className="hastePasteSettingsGridItemButton"
                                     size={Button.Sizes.MIN}
@@ -83,6 +89,7 @@ module.exports = class HastePasteSettings extends React.PureComponent {
 
                         .hastePasteSettingsGridItem div[class*="divider-"] {
                             border-color: transparent;
+                            margin: 0;
                         }
                     `}
                     </style>
