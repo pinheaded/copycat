@@ -40,15 +40,6 @@ module.exports = class Copycat extends Plugin {
         this.keyup_func = this.keyup.bind(this);
 
         document.body.addEventListener("keyup", this.keyup_func);
-        powercord.api.notices.sendToast("copycatNotif", {
-            header: "Haste Paste Notice",
-            content: "We've changed our plugin name. In short, this nullifies all plugin settings. Just go to User Settings > Copycat to set them back",
-    		type: "success",
-            timeout: 5000,
-        });
-        setTimeout(() => {
-            powercord.api.notices.closeToast("copycatNotif");
-        }, 10000);
     }
 
     pluginWillUnload() {
